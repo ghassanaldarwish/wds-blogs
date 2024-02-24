@@ -22,6 +22,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying......'
+                script {
+                  // Run Ansible playbook
+                    sh "ansible --version"
+                }
             }
         }
     }
