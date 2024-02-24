@@ -24,7 +24,7 @@ pipeline {
                 echo 'Deploying......'
                 script {
                   // Run Ansible playbook
-                    sh "ansible --version"
+                    sh "docker --version"
                 }
             }
         }
