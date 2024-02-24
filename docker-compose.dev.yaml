@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  wds-www:
+  wds-blogs:
     build:
       context: ./
       dockerfile: Dockerfile.dev
@@ -14,8 +14,8 @@ services:
       - WDS_SOCKET_PORT=0
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wds-www.rule=Host(`localhost`)"
-      - "traefik.http.services.wds-www.loadbalancer.server.port=3000"
+      - "traefik.http.routers.wds-blogs.rule=Host(`blogs.localhost`)"
+      - "traefik.http.services.wds-blogs.loadbalancer.server.port=3000"
     env_file:
       - ./.env.local
     volumes:
