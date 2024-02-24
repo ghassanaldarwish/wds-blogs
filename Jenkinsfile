@@ -5,6 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                echo "DOCKER_USERNAME=${DOCKER_USERNAME}" > .env
+                echo "DOCKER_PASSWORD=${DOCKER_USERNAME}" >> .env
+
+
             }
         }
         stage('Test') {
