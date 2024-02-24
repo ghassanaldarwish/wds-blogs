@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-        PYTHONPATH = '/usr/lib/python3.11'
+
     }
 
     stages {
@@ -27,6 +27,8 @@ pipeline {
                     // Run Ansible playbook
                     sh "docker --version"
                     sh "ansible-playbook --version"
+                    sh "ansible --version"
+
                 }
             }
         }
