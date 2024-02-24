@@ -22,10 +22,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying......'
+                // ansiblePlaybook(
+                //     playbook: 'playbook.yml',
+                //     inventory: 'inventory'
+                // )
                 script {
                   // Run Ansible playbook
                     sh "docker --version"
-                    sh "ansible --version"
+                    sh "ansible-playbook --version"
 
                 }
             }
