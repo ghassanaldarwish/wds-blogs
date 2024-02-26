@@ -10,7 +10,7 @@ services:
       - "traefik.http.routers.wds-blogs-nginx.rule=Host(`blogs.localhost`)"
       - "traefik.http.services.wds-blogs-nginx.loadbalancer.server.port=80"
     networks:
-      - app-blogs-network
+      - app-workspace-network
       - frontend
 
   wds-blogs:
@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile.dev
     restart: on-failure
     networks:
-      - app-blogs-network
+      - app-workspace-network
       - frontend
     environment:
       - IS_DOCKER=true
@@ -34,8 +34,8 @@ services:
       - ./public:/app/public
 
 networks:
-  app-blogs-network:
-    name: app-blogs-network
+  app-workspace-network:
+    name: app-workspace-network
 
   frontend:
     name: frontend
