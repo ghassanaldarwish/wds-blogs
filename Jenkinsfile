@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-
     }
 
     stages {
@@ -22,14 +21,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying......'
-                script {
-                    // Run Ansible playbook
-                    sh "docker --version"
-                    sh "ansible-playbook --version"
-                    sh "ansible --version"
-
-                }
+                echo 'Deploying...'
+                // Execute the ansible playbook
+                sh """
+                ansible-playbook -i /usr/inventory --key-file /usr/.ssh/id_ed25519 ansible.yaml
+                """
             }
         }
     }
