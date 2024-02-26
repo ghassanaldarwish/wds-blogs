@@ -8,11 +8,11 @@ services:
       context: ./nginx
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wds-ui-docs.rule=Host(`blogs.webdrei.com`)"
-      - "traefik.http.routers.wds-ui-docs.entrypoints=websecure"
-      - "traefik.http.routers.wds-ui-docs.tls.certresolver=letsencrypt"
-      - traefik.http.routers.wds-ui-docs.tls=true
-      - "traefik.http.services.wds-ui-docs.loadbalancer.server.port=80"
+      - "traefik.http.routers.wds-blogs-nginx.rule=Host(`blogs.webdrei.com`)"
+      - "traefik.http.routers.wds-blogs-nginx.entrypoints=websecure"
+      - "traefik.http.routers.wds-blogs-nginx.tls.certresolver=letsencrypt"
+      - traefik.http.routers.wds-blogs-nginx.tls=true
+      - "traefik.http.services.wds-blogs-nginx.loadbalancer.server.port=80"
     networks:
       - app-workspace-network
       - frontend
