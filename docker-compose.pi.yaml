@@ -10,6 +10,8 @@ services:
       - "8088:80"
     networks:
       - wds-blogs-nginx-network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   wds-blogs:
     image: "ghassanaldarwish/wds-blogs"
@@ -22,7 +24,8 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
       - NODE_ENV=production
-
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     env_file:
       - ../environment/wds-blogs/.env.local
 
