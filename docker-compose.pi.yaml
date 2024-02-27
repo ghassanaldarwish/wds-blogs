@@ -21,8 +21,6 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
       - NODE_ENV=production
-    ports:
-      - "3000:3000"
 
     env_file:
       - ../environment/wds-blogs/.env.local
