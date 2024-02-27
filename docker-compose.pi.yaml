@@ -29,6 +29,8 @@ services:
       - WDS_SOCKET_PORT=0
       - NODE_ENV=production
 
+    ports:
+      - "3000:3000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wds-blogs.rule=Host(`blogs.webdrei.com`)"
