@@ -8,6 +8,8 @@ services:
       context: ./nginx
     networks:
       - wds-blogs-nginx-network
+    ports:
+      - "8088:80"
 
   wds-blogs:
     image: "ghassanaldarwish/wds-blogs"
