@@ -25,7 +25,8 @@ services:
       - IS_DOCKER=true
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
-
+    ports:
+      - "3000:3000"
     # env_file:
     #   - ./.env.local
     volumes:
