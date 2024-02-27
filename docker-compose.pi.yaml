@@ -19,17 +19,19 @@ services:
     restart: on-failure
     networks:
       - wds-blogs-nginx-network
+
     ports:
       - "3000:3000"
+
     environment:
       - IS_DOCKER=true
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
       - NODE_ENV=production
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    env_file:
-      - ../environment/wds-blogs/.env.local
+    # volumes:
+    #   - /var/run/docker.sock:/var/run/docker.sock
+    # env_file:
+    #   - ../environment/wds-blogs/.env.local
 
 networks:
   wds-blogs-nginx-network:
