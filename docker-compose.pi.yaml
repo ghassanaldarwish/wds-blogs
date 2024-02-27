@@ -1,32 +1,42 @@
 version: "3.8"
 # commands url http://host.docker.internal:6777
 services:
-  wds-blogs-nginx:
+  wds-blogs-traefik:
+    image: "traefik:latest"
+    container_name: wds-blogs-traefik
     restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    networks:
-      - wds-blogs-nginx-network
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
     ports:
       - "8088:80"
+      - "443:443"
+    networks:
+      - wds-blogs-traefik-network
 
   wds-blogs:
     image: "ghassanaldarwish/wds-blogs"
     restart: on-failure
     networks:
-      - wds-blogs-nginx-network
+      - wds-blogs-traefik-network
     environment:
       - IS_DOCKER=true
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
       - NODE_ENV=production
-    ports:
-      - "3000:3000"
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wds-blogs.rule=Host(`blogs.webdrei.com`)"
+      - "traefik.http.services.wds-blogs.loadbalancer.server.port=3000"
 
     env_file:
       - ../environment/wds-blogs/.env.local
 
 networks:
-  wds-blogs-nginx-network:
-    name: wds-blogs-nginx-network
+  wds-blogs-traefik-network:
+    name: wds-blogs-traefik-network
