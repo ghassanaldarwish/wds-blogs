@@ -8,6 +8,7 @@ services:
       context: ./nginx
     ports:
       - "8088:80"
+
     networks:
       - wds-blogs-nginx-network
     volumes:
