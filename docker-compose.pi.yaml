@@ -11,6 +11,8 @@ services:
       - app-workspace-network
     ports:
       - "8088:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   # wds-blogs:
   #   image: "ghassanaldarwish/wds-blogs"
