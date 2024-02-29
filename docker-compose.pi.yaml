@@ -27,24 +27,24 @@ services:
     env_file:
       - ../environment/wds-blogs/.env.local
 
-  # wds-blogs-api-auth:
-  #   image: "ghassanaldarwish/api-auth"
+  wds-blogs-api-auth:
+    image: "ghassanaldarwish/api-auth"
 
-  #   env_file:
-  #     - ../environment/wds-blogs/.env.local
-  #   environment:
-  #     - PORT=3013
-  #     - NODE_ENV=production
-  #     - DB_NAME=auth
-  #     - ROLE=admin
-  #     - CACHE_HOST=api-cache
-  #     - DB_URI=mongodb://api-db
-  #     - SERVICE_NAME=auth
-  #     - KAFKA_BROKER_LISTENER=kafka:9092
-  #   restart: on-failure
-  #   networks:
-  #     - wds-blogs-nginx-network
-  #     - app-workspace-network
+    env_file:
+      - ../environment/wds-blogs/.env.local
+    environment:
+      - PORT=3013
+      - NODE_ENV=production
+      - DB_NAME=auth
+      - ROLE=admin
+      - CACHE_HOST=api-cache
+      - DB_URI=mongodb://api-db
+      - SERVICE_NAME=auth
+      - KAFKA_BROKER_LISTENER=kafka:9092
+    restart: on-failure
+    networks:
+      - wds-blogs-nginx-network
+      - app-workspace-network
 
 networks:
   wds-blogs-nginx-network:
