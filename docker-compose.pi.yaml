@@ -14,20 +14,20 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  # wds-blogs:
-  #   image: "ghassanaldarwish/wds-blogs"
-  #   restart: on-failure
-  #   networks:
-  #     - wds-blogs-nginx-network
-  #     - app-workspace-network
-  #   environment:
-  #     - IS_DOCKER=true
-  #     - CHOKIDAR_USEPOLLING=true
-  #     - WDS_SOCKET_PORT=0
-  #     - NODE_ENV=production
+  wds-blogs:
+    image: "ghassanaldarwish/wds-blogs"
+    restart: on-failure
+    networks:
+      - wds-blogs-nginx-network
+      - app-workspace-network
+    environment:
+      - IS_DOCKER=true
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=0
+      - NODE_ENV=production
 
-  #   env_file:
-  #     - ../environment/wds-blogs/.env.local
+    env_file:
+      - ../environment/wds-blogs/.env.local
 
   wds-blogs-api-auth:
     image: "ghassanaldarwish/api-auth"
