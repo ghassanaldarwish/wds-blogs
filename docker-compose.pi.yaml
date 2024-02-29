@@ -27,8 +27,8 @@ services:
     env_file:
       - ../environment/wds-blogs/.env.local
 
-  wds-blogs-auth-api:
-    image: "ghassanaldarwish/auth-api"
+  wds-blogs-api-auth:
+    image: "ghassanaldarwish/api-auth"
 
     env_file:
       - ../environment/wds-blogs/.env.local
