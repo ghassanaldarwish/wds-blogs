@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.wds-blogs-traefik-app.entrypoints=websecure"
       - "traefik.http.routers.wds-blogs-traefik-app.tls.certresolver=letsencrypt"
       - traefik.http.routers.wds-blogs-traefik-app.tls=true
-      #- "traefik.http.services.wds-blogs-traefik-app.loadbalancer.server.port=3000"
+      - "traefik.http.services.wds-blogs-traefik-app.loadbalancer.server.port=3000"
     # env_file:
     #   - ../environment/wds-workspace/.env.local
 
