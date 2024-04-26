@@ -1,25 +1,9 @@
 version: "3.8"
 # commands url http://host.docker.internal:6777
 services:
-  wds-blogs-nginx:
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.wds-blogs-nginx.rule=Host(`blogs.webdrei.com`)"
-      - "traefik.http.routers.wds-blogs-nginx.entrypoints=websecure"
-      - "traefik.http.routers.wds-blogs-nginx.tls.certresolver=letsencrypt"
-      - traefik.http.routers.wds-blogs-nginx.tls=true
-      - "traefik.http.services.wds-blogs-nginx.loadbalancer.server.port=80"
-    networks:
-      - app-workspace-network
-      - frontend
-
-  wds-blogs:
+  wds-blogs-traefik-app:
     image: "ghassanaldarwish/wds-blogs"
-    restart: on-failure
+    restart: unless-stopped
     networks:
       - app-workspace-network
       - frontend
@@ -28,9 +12,15 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
       - NODE_ENV=production
-
-    env_file:
-      - ../environment/wds-blogs/.env.local
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wds-blogs-traefik-app.rule=Host(`blogs.webdrei.com`)"
+      - "traefik.http.routers.wds-blogs-traefik-app.entrypoints=websecure"
+      - "traefik.http.routers.wds-blogs-traefik-app.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.wds-blogs-traefik-app.tls=true"
+      - "traefik.http.services.wds-blogs-traefik-app.loadbalancer.server.port=3000"
+    # env_file:
+    #   - ../environment/wds-workspace/.env.local
 
 networks:
   app-workspace-network:
