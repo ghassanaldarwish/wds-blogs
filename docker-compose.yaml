@@ -1,7 +1,7 @@
 version: "3.8"
 # commands url http://host.docker.internal:6777
 services:
-  wds-blogs-traefik-app:
+  wds-blogs:
     image: "ghassanaldarwish/wds-blogs"
     restart: unless-stopped
     networks:
@@ -14,11 +14,11 @@ services:
       - NODE_ENV=production
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wds-blogs-traefik-app.rule=Host(`blogs.webdrei.com`)"
-      - "traefik.http.routers.wds-blogs-traefik-app.entrypoints=websecure"
-      - "traefik.http.routers.wds-blogs-traefik-app.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.wds-blogs-traefik-app.tls=true"
-      - "traefik.http.services.wds-blogs-traefik-app.loadbalancer.server.port=3000"
+      - "traefik.http.routers.wds-blogs.rule=Host(`blogs.webdrei.com`)"
+      - "traefik.http.routers.wds-blogs.entrypoints=websecure"
+      - "traefik.http.routers.wds-blogs.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.wds-blogs.tls=true"
+      - "traefik.http.services.wds-blogs.loadbalancer.server.port=3000"
     # env_file:
     #   - ../environment/wds-workspace/.env.local
 
